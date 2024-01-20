@@ -10,14 +10,19 @@ headers = {
     "Content-Type": "application/json"
 }
 
-print("Sending request to:", url)  # Add this line
-print("Request data:", json.dumps(data))  # Add this line
+try:
+    print("Sending request to:", url)
+    print("Request data:", json.dumps(data))
+    
+    response = requests.post(url, data=json.dumps(data), headers=headers)
+    
+    print("Response status code:", response.status_code)
+    print("Response JSON:", response.json())
 
-response = requests.post(url, data=json.dumps(data), headers=headers)
+    if response.status_code == 201:
+        print("Item created successfully:", response.json()["item"])
+    else:
+        print("Error creating item:", response.json()["message"])
 
-print("Response JSON:", response.json())
-
-if response.status_code == 201:
-    print("Item created successfully:", response.json()["item"])
-else:
-    print("Error creating item:", response.json()["message"])
+except requests.exceptions.ConnectionError as e:
+    print("Connection error:", e)
