@@ -52,3 +52,4 @@ Testing with Simple Rest Client in VS Code:
 
     Review Response:
         Check the response in the client for the status, message, and item details
+        Alternatively look at the updated .txt C:/xampp/htdocs/my_api/items.txt
